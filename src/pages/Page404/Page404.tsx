@@ -30,6 +30,7 @@ const Page404: React.FC<Props> = ({ isLoaded }) => {
   const [counter, setCounter] = useState(0);
   const interval = useRef<NodeJS.Timeout>();
   const [dialogIndex, setDialogIndex] = useState(0);
+  const [cancelCounter, setCancelCounter] = useState(0);
   const refAnimationInstance = useRef<any>(null);
 
   const getInstance = useCallback((instance: any) => {
@@ -119,6 +120,7 @@ const Page404: React.FC<Props> = ({ isLoaded }) => {
       onCancel: () => {
         // Throw error
         throwError();
+        setCancelCounter((prev) => prev + 1);
       },
     },
     {
@@ -129,6 +131,15 @@ const Page404: React.FC<Props> = ({ isLoaded }) => {
         fire();
       },
       confirmText: "Awwww",
+    },
+    {
+      title: "Fuck you!",
+      message: "You'll still be my valentine! SO CLICK OKAY!",
+      onConfirm: () => {
+        // Confirm
+        setDialogIndex(4);
+        fire();
+      },
     },
   ];
 
@@ -152,6 +163,12 @@ const Page404: React.FC<Props> = ({ isLoaded }) => {
       }
     }
   }, [counter]);
+
+  useEffect(() => {
+    if (cancelCounter > 3) {
+      setDialogIndex(5);
+    }
+  }, [cancelCounter]);
 
   return (
     <div className="Page404">
