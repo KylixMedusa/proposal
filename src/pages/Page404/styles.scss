@@ -1,0 +1,55 @@
+.Page404 {
+    height: var(--app-height);
+    width: 100%;
+    background-color: #010101;
+    position: relative;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        &.Page404__heartimg {
+            object-fit: cover;
+        }
+    }
+    .Page404__text {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #00000080;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        h1 {
+            font-size: 10rem;
+            color: #fff;
+            text-align: center;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0rem;
+            margin: 0;
+            border: 4px solid #fff;
+            border-radius: 50%;
+            height: 12rem;
+            width: 12rem;
+            line-height: 10rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+        }
+        animation: show 0.2s ease-in-out;
+    }
+}
+
+@keyframes show {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
