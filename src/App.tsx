@@ -9,6 +9,7 @@ import Page404 from './pages/Page404/Page404';
 
 const App: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [loaderClass, setLoaderClass] = useState("loader__container");
 
   const appHeight = () => {
     const doc = document.documentElement;
@@ -22,16 +23,15 @@ const App: React.FC = () => {
   }, []);
 
   const onLoad = () => {
-    const loader = document.querySelector(".loader__container");
-    if (loader) {
-      setTimeout(() => {
-        loader.classList.add("loader__container--hide");
-      }, 1000);
-      setTimeout(() => {
-        loader.classList.add("loader__container--hidden");
-        setIsLoaded(true);
-      }, 2000);
-    }
+    setTimeout(() => {
+      setLoaderClass("loader__container loader__container--hide");
+    }, 1000);
+    setTimeout(() => {
+      setLoaderClass(
+        "loader__container loader__container--hide loader__container--hidden"
+      );
+      setIsLoaded(true);
+    }, 2000);
   };
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      <div className="loader__container">
+      <div className={loaderClass}>
         <div className="clock-loader"></div>
       </div>
       <Page404 isLoaded={isLoaded} />
