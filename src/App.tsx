@@ -25,17 +25,19 @@ const App: React.FC = () => {
   const onLoad = () => {
     setTimeout(() => {
       setLoaderClass("loader__container loader__container--hide");
-    }, 1000);
+    }, 1500);
     setTimeout(() => {
       setLoaderClass(
         "loader__container loader__container--hide loader__container--hidden"
       );
-      setIsLoaded(true);
     }, 2000);
+    setTimeout(() => {
+      setIsLoaded(true);
+    }, 4000);
   };
 
   useEffect(() => {
-    window.addEventListener("load", onLoad);
+    onLoad();
   }, []);
 
   return (
